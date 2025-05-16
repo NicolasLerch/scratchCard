@@ -5,6 +5,10 @@ import { useState, useEffect } from "react";
 
 import Swal from "sweetalert2";
 
+import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
+import supervielleMineriaWhite from "../assets/sup-mineria-logo-white.png";
+import supervielleMineriaRed from "../assets/sup-mineria-logo-red.png";
+
 export default function FormPage() {
   const [prizesAvailables, setPrizesAvailables] = useState(true);
   const handleSubmit = async (e) => {
@@ -80,12 +84,13 @@ export default function FormPage() {
 
   return (
     <div className="FormPage">
-      <div className="img-title-container">
+      <div className="title-container">
         <img
           className="supervielle-logo-img"
-          src={whiteLogo}
+          src={supervielleMineriaRed}
           alt="Supervielle Logo"
         />
+        <span className="title-text">TE SIGUE EL RITMO</span>
       </div>
       <div className="form-container">
         <form className="home-form" id="home-form" onSubmit={handleSubmit}>
@@ -93,7 +98,7 @@ export default function FormPage() {
           <input type="text" placeholder="Apellido" name="last_name" />
           <input type="email" placeholder="Email" name="email" />
           <input type="tel" placeholder="Celular" name="phone" />
-          <button type="submit">Jugar</button>
+          <button className="submit-button" type="submit">Jugar</button>
         </form>
       </div>
     </div>
