@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const ScratchCard = ({
-  brushSize,
+  // brushSize,
   threshold,
   onComplete,
   content,
@@ -42,10 +42,10 @@ const ScratchCard = ({
 
   // Paso 0: función para dibujar borde redondeado con sombra
   function drawRoundedRectWithShadow(ctx, width, height, radius) {
-    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-    ctx.shadowBlur = 10;
+    // ctx.shadowColor = "rgba(10, 10, 10, 1)";
+    ctx.shadowBlur = 0;
     ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 4;
+    ctx.shadowOffsetY = 0;
 
     ctx.beginPath();
     ctx.moveTo(radius, 0);
@@ -62,6 +62,8 @@ const ScratchCard = ({
     
     // Limpia la sombra para el resto del dibujo
     ctx.shadowColor = "transparent";
+    // ctx.shadowColor = "black";
+    
   }
 
   // Limpia el canvas
@@ -117,9 +119,12 @@ const ScratchCard = ({
     const ctx = canvasRef.current.getContext("2d");
     const pos = getPosition(e);
 
+    const dynamicBrushSize = Math.max(10, dimensions.width * 0.05);
+
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(pos.x, pos.y, brushSize / 2, 0, Math.PI * 2);
+    // ctx.arc(pos.x, pos.y, brushSize / 2, 0, Math.PI * 2);
+    ctx.arc(pos.x, pos.y, dynamicBrushSize / 2, 0, Math.PI * 2);
     ctx.fill();
   };
 
@@ -154,7 +159,6 @@ const ScratchCard = ({
         margin: "0 auto",
         userSelect: "none",
         touchAction: "none",
-
       }}
     >
       <div

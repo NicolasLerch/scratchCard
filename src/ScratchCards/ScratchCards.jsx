@@ -2,8 +2,9 @@ import ScratchCard from "./ScratchCard";
 import { useState, useEffect } from "react";
 import "./ScratchCards.css";
 import mochilaSupervielle from "../assets/mochila-supervielle.png";
-import supervielleMineriaLogo from "../assets/sup-mineria-logo.png";
+// import supervielleMineriaLogo from "../assets/sup-mineria-logo.png";
 import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
+// import supervielleMineriaWhite from "../assets/sup-mineria-logo-white.png";
 
 import { supabase } from "../supaBaseClient";
 
@@ -34,17 +35,48 @@ export default function ScratchCardsPage() {
     scratchSound.stop();
   };
 
-  const allLogos = ["mochila", "no prize"];
+
   const generateRandomLogos = () => {
-    return Array.from({ length: 3 }, () => {
-      const index = Math.floor(Math.random() * allLogos.length);
-      const type = allLogos[index];
-      return {
-        id: crypto.randomUUID(), // ✅ ID único para que React re-renderice
-        type,
-      };
-    });
-  };
+  const result = [];
+  const random = Math.random();
+
+  if (random < 0.05) {
+    // 🎉 5% chance de premio mayor: 3 mochilas
+    for (let i = 0; i < 3; i++) {
+      result.push({ id: crypto.randomUUID(), type: "mochila" });
+    }
+  } else if (random < 0.35) {
+    // 🎁 30% chance de 2 mochilas y 1 "no prize"
+    const positions = [0, 1, 2];
+    const mochilaPositions = [];
+
+    // Elegimos 2 posiciones únicas para la mochila
+    while (mochilaPositions.length < 2) {
+      const index = positions.splice(Math.floor(Math.random() * positions.length), 1)[0];
+      mochilaPositions.push(index);
+    }
+
+    for (let i = 0; i < 3; i++) {
+      result.push({
+        id: crypto.randomUUID(),
+        type: mochilaPositions.includes(i) ? "mochila" : "no prize",
+      });
+    }
+  } else {
+    // ✅ 65% chance de 1 mochila y 2 "no prize"
+    const mochilaIndex = Math.floor(Math.random() * 3);
+    for (let i = 0; i < 3; i++) {
+      result.push({
+        id: crypto.randomUUID(),
+        type: i === mochilaIndex ? "mochila" : "no prize",
+      });
+    }
+  }
+
+  return result;
+};
+
+
   const [logoSet, setLogoSet] = useState(generateRandomLogos());
   const [revealed, setRevealed] = useState([]);
   const [showFireworks, setShowFireworks] = useState(false);
@@ -77,7 +109,7 @@ export default function ScratchCardsPage() {
         updatePrizeStock();
         setShowConfetti(true);
         setShowFireworks(true);
-        setTimeout(() => setShowFireworks(false), 5000);
+        setTimeout(() => setShowFireworks(false), 10000);
 
         winnerSound.play();
         setTimeout(() => {
@@ -99,7 +131,7 @@ export default function ScratchCardsPage() {
       } else {
         Swal.fire({
           title: "¡Suerte la próxima!",
-          text: "Segui participando",
+          text: "Seguí participando",
           confirmButtonText: "Regresar al inicio",
         }).then((result) => {
           if (result.isConfirmed) {
@@ -126,7 +158,7 @@ export default function ScratchCardsPage() {
   return (
     <div className="scratch-cards-page">
       {showFireworks && <FireworksEffect />}
-      {showConfetti && <ConfettiEffect duration={5000} />}
+      {showConfetti && <ConfettiEffect duration={10000} />}
       <div className="scratch-cards-title">
         <img
           src={supervielleMineriaPurple}
@@ -142,9 +174,9 @@ export default function ScratchCardsPage() {
               key={logo.id}
               brushSize={10}
               threshold={15}
-              coverColor="#d2b9b9"
-              // coverColor="#9c9c9c"
-              coverImage={supervielleMineriaLogo}
+              // coverColor="#d2b9b9"
+              coverColor="white"
+              coverImage={supervielleMineriaPurple}
               onComplete={() => handleReveal(logo)}
               onScratchStart={handleScratchStart}
               onScratchEnd={handleScratchEnd}
@@ -158,7 +190,6 @@ export default function ScratchCardsPage() {
                       height: "100%",
                       objectFit: "contain",
                       borderRadius: "12px",
-                      // border: "15px solid #fff",
                     }}
                   />
                 ) : (

@@ -34,11 +34,6 @@ img.supervielle-mineria-logo{
     gap: 30px;
 }
 
-.scratch-card{
-    /* width: 350px; */
-    /* height: 100px; */
-}
-
 .buttons-container{
     display: flex;
     gap: 10px;
@@ -75,6 +70,21 @@ img.supervielle-mineria-logo{
         position: relative;
         top: 2px;
         right: 0;
+    }
+}
+
+@media screen and (max-width: 799px){
+    .scratch-cards-title{
+        width: 90%;
+    }
+
+    img.supervielle-mineria-logo{
+        width: 80%;
+    }
+
+    .subtitle{
+       font-size: 5vw;
+       margin-bottom: 10px;
     }
 }
 
