@@ -34,26 +34,57 @@ const ScratchCard = ({
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+  const canvas = canvasRef.current;
+  const ctx = canvas.getContext("2d");
 
-    // Paso 1: fondo gris o el color que quieras
-    ctx.fillStyle = coverColor;
-    ctx.fillRect(0, 0, dimensions.width, dimensions.height);
+  const { width, height } = dimensions;
+  const radius = 8;
 
-    // Paso 2: dibujar la imagen PNG encima
-    if (coverImage) {
-      const image = new Image();
-      image.src = coverImage;
-      image.onload = () => {
-        const imgWidth = dimensions.width * 0.5;
-        const imgHeight = dimensions.height * 0.25;
-        const x = (dimensions.width - imgWidth) / 2;
-        const y = (dimensions.height - imgHeight) / 2;
-        ctx.drawImage(image, x, y, imgWidth, imgHeight);
-      };
-    }
-  }, [dimensions, coverColor, coverImage]);
+  // Paso 0: función para dibujar borde redondeado con sombra
+  function drawRoundedRectWithShadow(ctx, width, height, radius) {
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 4;
+
+    ctx.beginPath();
+    ctx.moveTo(radius, 0);
+    ctx.lineTo(width - radius, 0);
+    ctx.quadraticCurveTo(width, 0, width, radius);
+    ctx.lineTo(width, height - radius);
+    ctx.quadraticCurveTo(width, height, width - radius, height);
+    ctx.lineTo(radius, height);
+    ctx.quadraticCurveTo(0, height, 0, height - radius);
+    ctx.lineTo(0, radius);
+    ctx.quadraticCurveTo(0, 0, radius, 0);
+    ctx.closePath();
+    ctx.fill();
+    
+    // Limpia la sombra para el resto del dibujo
+    ctx.shadowColor = "transparent";
+  }
+
+  // Limpia el canvas
+  ctx.clearRect(0, 0, width, height);
+
+  // Paso 1: fondo gris (con bordes redondeados y sombra)
+  ctx.fillStyle = coverColor;
+  drawRoundedRectWithShadow(ctx, width, height, radius);
+
+  // Paso 2: dibujar la imagen PNG encima
+  if (coverImage) {
+    const image = new Image();
+    image.src = coverImage;
+    image.onload = () => {
+      const imgWidth = width * 0.5;
+      const imgHeight = height * 0.25;
+      const x = (width - imgWidth) / 2;
+      const y = (height - imgHeight) / 2;
+      ctx.drawImage(image, x, y, imgWidth, imgHeight);
+    };
+  }
+}, [dimensions, coverColor, coverImage]);
+
 
   const getPosition = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
@@ -123,6 +154,7 @@ const ScratchCard = ({
         margin: "0 auto",
         userSelect: "none",
         touchAction: "none",
+
       }}
     >
       <div
@@ -137,6 +169,7 @@ const ScratchCard = ({
             width: "100%",
             height: "100%",
             position: "absolute",
+            backgroundColor: "transparent",
             top: 0,
             left: 0,
             zIndex: 0,
@@ -155,6 +188,10 @@ const ScratchCard = ({
             left: 0,
             zIndex: 1,
             cursor: "grab",
+            // boxShadow: "0 0 15px  rgb(0, 0, 0)",
+            boxShadow: "0 0 1px 0.5rem #FFD1F0",
+            borderRadius: "10px",
+            // border: "15px solid #fff",
           }}
           onMouseDown={startDrawing}
           onTouchStart={startDrawing}

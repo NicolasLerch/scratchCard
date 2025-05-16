@@ -10,16 +10,95 @@
 .scratch-cards-title{
     font-size: 50px;
     color: white;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 60px
+}
+
+img.supervielle-mineria-logo{
+    margin: auto;
+    width: 65%;
+}
+
+.subtitle{
+   font-size: 3vw;
+   margin-bottom: 10px;
 }
 
 .scratch-cards-container{
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    gap: 20px;
+    width: 90%;
+    gap: 30px;
 }
 
 .scratch-card{
-    width: 350px;
-    height: 100px;
+    /* width: 350px; */
+    /* height: 100px; */
+}
+
+.buttons-container{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    margin: 40px;
+    width: 40%;
+    button{
+        padding: 10px 20px;
+    }
+}
+
+.reset-button{
+    background-color: white;
+    color: #8A0057;
+    border: none;
+    align-items: center;
+    align-content: center;
+    /* position: relative; */
+}
+
+.back-button{
+    background-color: #8A0057;
+    color: white;
+    border: none;
+}
+
+.back-button, .reset-button{
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        transform: scale(1.1);
+    }
+    svg{
+        position: relative;
+        top: 2px;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    /* .scratch-cards-page{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scratch-cards-container{
+        flex-direction: column;
+        align-items: center;
+    } */
+
+    .buttons-container{
+        width: 90%;
+        margin: auto;
+        margin-top: 40px;
+        justify-content: center;
+    }
+
+    .scratch-cards-text{
+        text-align: center;
+        font-size: 0.5em;
+    }
 }

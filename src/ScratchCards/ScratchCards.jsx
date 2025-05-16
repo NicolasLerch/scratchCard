@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./ScratchCards.css";
 import mochilaSupervielle from "../assets/mochila-supervielle.png";
 import supervielleMineriaLogo from "../assets/sup-mineria-logo.png";
+import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
 
 import { supabase } from "../supaBaseClient";
 
@@ -15,6 +16,10 @@ import useSound from "../hooks/useSound";
 import ScratchSound from "../assets/sounds/scratch-sound-3.mp3";
 import FireworksSound from "../assets/sounds/fireworks-sound-280715.mp3";
 import WinnerSound from "../assets/sounds/winner-alert2.wav";
+
+// Icons
+import { GrPowerReset } from "react-icons/gr";
+import { RiHomeLine } from "react-icons/ri";
 
 export default function ScratchCardsPage() {
   const fireworksSound = useSound(FireworksSound);
@@ -123,55 +128,70 @@ export default function ScratchCardsPage() {
       {showFireworks && <FireworksEffect />}
       {showConfetti && <ConfettiEffect duration={5000} />}
       <div className="scratch-cards-title">
-        {/* <img src={supervielleMineriaLogo} alt="Supervielle Mineria" /> */}
-        <h2>Supervielle Mineria</h2>
+        <img
+          src={supervielleMineriaPurple}
+          alt="Supervielle Mineria"
+          className="supervielle-mineria-logo"
+        />
+        <p className="subtitle">¡Raspá y podés ganar una mochila!</p>
       </div>
       <div className="scratch-cards-container">
         {logoSet.map((logo) => (
-          <ScratchCard
-            key={logo.id}
-            brushSize={30}
-            threshold={15}
-            coverColor="gray"
-            coverImage={supervielleMineriaLogo}
-            onComplete={() => handleReveal(logo)}
-            onScratchStart={handleScratchStart}
-            onScratchEnd={handleScratchEnd}
-            content={
-              logo.type === "mochila" ? (
-                <img
-                  src={mochilaSupervielle}
-                  alt="Mochila"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                  }}
-                />
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "gold",
-                    color: "#000",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "1.5rem",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Seguí participando
-                </div>
-              )
-            }
-          />
+          
+            <ScratchCard
+              key={logo.id}
+              brushSize={10}
+              threshold={15}
+              coverColor="#d2b9b9"
+              // coverColor="#9c9c9c"
+              coverImage={supervielleMineriaLogo}
+              onComplete={() => handleReveal(logo)}
+              onScratchStart={handleScratchStart}
+              onScratchEnd={handleScratchEnd}
+              content={
+                logo.type === "mochila" ? (
+                  <img
+                    src={mochilaSupervielle}
+                    alt="Mochila"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      borderRadius: "12px",
+                      // border: "15px solid #fff",
+                    }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      color: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                      // borderRadius: "16px",
+                    }}
+                  >
+                    <p className="scratch-cards-text">Seguí participando</p>
+                  </div>
+                )
+              }
+            />
+          
         ))}
       </div>
       <div className="buttons-container">
-        <button onClick={handleRestart}>Reiniciar</button>
-        <button onClick={handleBackButton}>Inicio</button>
+        <button className="reset-button" onClick={handleRestart}>
+          {" "}
+          <GrPowerReset clasName="fa-icon" /> Reiniciar
+        </button>
+        <button className="back-button" onClick={handleBackButton}>
+          {" "}
+          <RiHomeLine clasName="fa-icon" /> Inicio
+        </button>
       </div>
     </div>
   );
