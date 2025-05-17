@@ -15,7 +15,8 @@
   --primary-color: #ff66cc;
   --secondary-color: #00ff00;
   --bg-color: #EBEBE3;
-  --main-red: #ce0000;
+  /* --main-red: #ce0000; */
+  --main-red: #471017;
 }
 
 a {

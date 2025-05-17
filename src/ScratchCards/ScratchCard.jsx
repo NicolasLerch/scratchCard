@@ -173,7 +173,8 @@ const ScratchCard = ({
             width: "100%",
             height: "100%",
             position: "absolute",
-            backgroundColor: "transparent",
+            backgroundColor: "#f090d0", // color rosa claro
+            // backgroundColor: "#471017", // color bordo
             top: 0,
             left: 0,
             zIndex: 0,
@@ -192,8 +193,9 @@ const ScratchCard = ({
             left: 0,
             zIndex: 1,
             cursor: "grab",
-            // boxShadow: "0 0 15px  rgb(0, 0, 0)",
-            boxShadow: "0 0 1px 0.5rem #FFD1F0",
+            // boxShadow: "0 0 1px 0.5rem #FFD1F0",
+            // boxShadow: "0 0 1px 0.5rem rgb(247, 158, 217)",
+             boxShadow: "0 0 1px 0.5rem #471017",
             borderRadius: "10px",
             // border: "15px solid #fff",
           }}

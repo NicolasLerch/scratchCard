@@ -1,6 +1,6 @@
 .scratch-cards-page{
     width: 100vw;
-    background-color: var(--primary-color);
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,7 @@
 
 .scratch-cards-title{
     font-size: 50px;
-    color: white;
+    color: var(--main-red);
     text-align: center;
     width: 80%;
     margin: auto;
@@ -47,7 +47,7 @@ img.supervielle-mineria-logo{
 
 .reset-button{
     background-color: white;
-    color: #8A0057;
+    color: var(--main-red);
     border: none;
     align-items: center;
     align-content: center;
@@ -55,7 +55,8 @@ img.supervielle-mineria-logo{
 }
 
 .back-button{
-    background-color: #8A0057;
+    /* background-color: #8A0057; */
+    background-color: var(--main-red);
     color: white;
     border: none;
 }
@@ -63,6 +64,7 @@ img.supervielle-mineria-logo{
 .back-button, .reset-button{
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
     &:hover{
         transform: scale(1.1);
     }

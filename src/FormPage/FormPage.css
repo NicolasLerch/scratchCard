@@ -26,10 +26,14 @@ img.supervielle-logo-img{
     padding-right: 20px;
 }
 
-.title-text{
-    font-size: 3em;
-    font-weight: bold;
+.title-text-container{
     width: 50%;
+}
+
+.title-text{
+    font-size: 4vw;
+    font-weight: bold;
+    width: 100%;
     padding-left: 20px;
     color: var(--main-red);
 }
@@ -63,4 +67,28 @@ form.home-form input {
 
 .submit-button{
    /* background-color: var(--main-red); */
+   background-color: var(--main-red);
+   color: white;
+   border: none;
+   border-radius: 10px;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s ease-in-out;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   text-align: center;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 699px) {
+    .title-text{
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 549px) {
+    .title-text{
+        font-size: 4vw;
+    }
 }

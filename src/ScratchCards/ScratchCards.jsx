@@ -2,8 +2,8 @@ import ScratchCard from "./ScratchCard";
 import { useState, useEffect } from "react";
 import "./ScratchCards.css";
 import mochilaSupervielle from "../assets/mochila-supervielle.png";
-// import supervielleMineriaLogo from "../assets/sup-mineria-logo.png";
-import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
+import supervielleMineriaLogo from "../assets/sup-mineria-logo.png";
+// import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
 // import supervielleMineriaWhite from "../assets/sup-mineria-logo-white.png";
 
 import { supabase } from "../supaBaseClient";
@@ -161,7 +161,7 @@ export default function ScratchCardsPage() {
       {showConfetti && <ConfettiEffect duration={10000} />}
       <div className="scratch-cards-title">
         <img
-          src={supervielleMineriaPurple}
+          src={supervielleMineriaLogo}
           alt="Supervielle Mineria"
           className="supervielle-mineria-logo"
         />
@@ -176,7 +176,7 @@ export default function ScratchCardsPage() {
               threshold={15}
               // coverColor="#d2b9b9"
               coverColor="white"
-              coverImage={supervielleMineriaPurple}
+              coverImage={supervielleMineriaLogo}
               onComplete={() => handleReveal(logo)}
               onScratchStart={handleScratchStart}
               onScratchEnd={handleScratchEnd}
@@ -197,7 +197,8 @@ export default function ScratchCardsPage() {
                     style={{
                       width: "100%",
                       height: "100%",
-                      color: "#fff",
+                      color: "var(--main-red)",
+                      // backgroundColor: "#ff66cc",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",

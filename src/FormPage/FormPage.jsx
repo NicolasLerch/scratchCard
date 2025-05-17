@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import supervielleMineriaPurple from "../assets/sup-mineria-logo-purple.png";
 import supervielleMineriaWhite from "../assets/sup-mineria-logo-white.png";
 import supervielleMineriaRed from "../assets/sup-mineria-logo-red.png";
+import supervielleMineria from "../assets/sup-mineria-logo.png";
 
 export default function FormPage() {
   const [prizesAvailables, setPrizesAvailables] = useState(true);
@@ -87,17 +88,20 @@ export default function FormPage() {
       <div className="title-container">
         <img
           className="supervielle-logo-img"
-          src={supervielleMineriaRed}
+          src={supervielleMineria}
           alt="Supervielle Logo"
         />
-        <span className="title-text">TE SIGUE EL RITMO</span>
+        <div className="title-text-container">
+          <p className="title-text">TE SIGUE EL RITMO</p>
+        </div>
+        
       </div>
       <div className="form-container">
         <form className="home-form" id="home-form" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Nombre" name="name" />
-          <input type="text" placeholder="Apellido" name="last_name" />
-          <input type="email" placeholder="Email" name="email" />
-          <input type="tel" placeholder="Celular" name="phone" />
+          <input type="text" placeholder="Nombre" name="name" required />
+          <input type="text" placeholder="Apellido" name="last_name" required />
+          <input type="email" placeholder="Email" name="email" required/>
+          <input type="tel" placeholder="Celular" name="phone" required/>
           <button className="submit-button" type="submit">Jugar</button>
         </form>
       </div>
