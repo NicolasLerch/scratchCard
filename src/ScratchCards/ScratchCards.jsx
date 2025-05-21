@@ -132,7 +132,7 @@ export default function ScratchCardsPage() {
         Swal.fire({
           title: "¡Suerte la próxima!",
           text: "Seguí participando",
-          confirmButtonText: "Regresar al inicio",
+          confirmButtonText: "Reinciar",
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = "/"; // Redirige a la home
