@@ -40,7 +40,7 @@ export default function ScratchCardsPage() {
   const result = [];
   const random = Math.random();
 
-  if (random < 0.05) {
+  if (random < 0.035) {
     // 🎉 5% chance de premio mayor: 3 mochilas
     for (let i = 0; i < 3; i++) {
       result.push({ id: crypto.randomUUID(), type: "mochila" });
@@ -152,7 +152,7 @@ export default function ScratchCardsPage() {
   };
 
   const handleBackButton = () => {
-    window.location.href = "/";
+    window.location.href = "/form";
   };
 
   return (

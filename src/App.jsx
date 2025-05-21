@@ -6,8 +6,8 @@ function App() {
   
   return (
     <Routes>
-      <Route path="/game" element={<ScratchCardsPage />} />
-      <Route path="/" element={<FormPage />} />
+      <Route path="/" element={<ScratchCardsPage />} />
+      <Route path="/form" element={<FormPage />} />
     </Routes>
   );
   
